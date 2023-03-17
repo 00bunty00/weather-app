@@ -11,13 +11,15 @@ const WeatherInfo: FC<Props> = ({ info }) => {
 
     const imgLink = `https://openweathermap.org/img/wn/${icon}@2x.png`
 
+    console.log(temp)
+
     return (
         <>
             <SmContainer>
-                <Location>{city}, {country}</Location>
-                <PresentTime>As of {time}</PresentTime>
-                <TempDiv><Temperature>{temp}°</Temperature> <Weather><Image backgroundImage={imgLink}/>{weather}</Weather></TempDiv>
-                <div>{description}</div>
+                <Location>{city}{city === undefined?"City, CO":','} {country}</Location>
+                <PresentTime>{time === undefined?"As of __:__":'As of'} {time}</PresentTime>
+                <TempDiv><Temperature>{temp}{temp === undefined?"Temp°":'°'}</Temperature> <Weather><Image backgroundImage={imgLink}/>{weather}</Weather></TempDiv>
+                <div>{description === undefined?"Weather description":description}</div>
             </SmContainer>
             <InfoDiv><InfoLeft>High/Low</InfoLeft><InfoRight>{high}/{low}</InfoRight></InfoDiv>
             <InfoDiv><InfoLeft>Wind</InfoLeft><InfoRight>{wind} km/hr</InfoRight></InfoDiv>
